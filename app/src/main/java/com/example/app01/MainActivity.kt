@@ -120,7 +120,6 @@ class MainActivity : AppCompatActivity() {
         val cedula = "1900419183"
         val arrayCedula = arrayListOf<Int>()
         val arrayNValidar = arrayListOf(2, 1, 2, 1, 2, 1, 2, 1, 2)
-        val arrayResultados = arrayListOf<Int>()
         var multiplicar = 0
         var numeroString = ""
         var sumarArray = arrayListOf<Int>()
