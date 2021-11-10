@@ -16,11 +16,17 @@ class MainActivity : AppCompatActivity() {
 
         // Mostrar el listado de paralelo de la materia de Plataformas móviles y los subgrupos
         // por proyectos (Mostrar los resultados ordenados).
-        listadoParalelo()
+        //listadoParalelo()
 
         // Presentar las propiedades de un vehículo utilizando clases, como tracción, motor,
         // tipo de vehículo, capacidad
         //propiedadesVehiculo()
+
+        // Algoritmo para ordenar un array
+        //ordenarArray()
+
+        // Validación de cedula
+        validarCedula()
     }
 
     private fun validarEdad() {
@@ -88,5 +94,109 @@ class MainActivity : AppCompatActivity() {
             Vehiculos.Tipo.Autobus, 21, "azul")
 
         vehiculo1.propiedades()
+    }
+
+    private fun ordenarArray() {
+        val arrayNumeros = arrayListOf(1, 4, 5, 2, 6, 8, 9)
+        var aux = 0
+
+        for (i in 0 until arrayNumeros.size) {
+            for (j in 0 until (arrayNumeros.size - 1)) {
+                if (arrayNumeros[j + 1] < arrayNumeros[j]) {
+                    aux = arrayNumeros[j + 1]
+                    arrayNumeros[j + 1] = arrayNumeros[j]
+                    arrayNumeros[j] = aux
+                }
+            }
+        }
+        println("Array ordenado: ")
+        for(x in arrayNumeros) {
+            println(x)
+        }
+
+    }
+
+    private fun validarCedula() {
+        val cedula = "1900419183"
+        val arrayCedula = arrayListOf<Int>()
+        val arrayNValidar = arrayListOf(2, 1, 2, 1, 2, 1, 2, 1, 2)
+        val arrayResultados = arrayListOf<Int>()
+        var multiplicar = 0
+        var numeroString = ""
+        var sumarArray = arrayListOf<Int>()
+        var sumar = 0
+        var resultadoValidacion = ""
+        var respuesta = 0
+
+        println("VALIDACIÓN DE CEDULA")
+        for (x in cedula) {
+            arrayCedula.add(Character.getNumericValue(x))
+            print("$x ")
+        }
+        print("\n")
+
+        for (i in arrayNValidar) {
+            print("$i ")
+        }
+        print("\n-------------------------\n")
+
+        for (j in 0 until arrayNValidar.size){
+            multiplicar = arrayCedula[j] * arrayNValidar[j]
+            if (multiplicar >= 10) {
+                numeroString = multiplicar.toString()
+                sumarArray.add(Character.getNumericValue(numeroString[0]) +
+                        Character.getNumericValue(numeroString[1]))
+            } else {
+                sumarArray.add(multiplicar)
+            }
+        }
+
+        for (s in sumarArray) {
+            sumar += s
+            print("$s ")
+        }
+
+        resultadoValidacion = "$sumar - "
+        if (sumar <= 10 && sumar > 0) {
+            resultadoValidacion += "10 = "
+            respuesta = (sumar - 10) * -1
+        } else if (sumar <= 20 && sumar > 10) {
+            resultadoValidacion += "20 = "
+            respuesta = (sumar - 20) * -1
+        } else if (sumar <= 30 && sumar > 20) {
+            resultadoValidacion += "30 = "
+            respuesta = (sumar - 30) * -1
+        } else if (sumar <= 40 && sumar > 30) {
+            resultadoValidacion += "40 = "
+            respuesta = (sumar - 40) * -1
+        } else if (sumar <= 50 && sumar > 40) {
+            resultadoValidacion += "50 = "
+            respuesta = (sumar - 50) * -1
+        } else if (sumar <= 60 && sumar > 50) {
+            resultadoValidacion += "60 = "
+            respuesta = (sumar - 60) * -1
+        } else if (sumar <= 70 && sumar > 60) {
+            resultadoValidacion += "70 = "
+            respuesta = (sumar - 70) * -1
+        } else if (sumar <= 80 && sumar > 70) {
+            resultadoValidacion += "80 = "
+            respuesta = (sumar - 80) * -1
+        } else if (sumar <= 90 && sumar > 80) {
+            resultadoValidacion += "90 = "
+            respuesta = (sumar - 90) * -1
+        } else if (sumar <= 100 && sumar > 90) {
+            resultadoValidacion += "100 = "
+            respuesta = (sumar - 100) * -1
+        }
+
+        print("\nResultado: $resultadoValidacion$respuesta\n")
+
+        if (arrayCedula[arrayCedula.size - 1] == respuesta) {
+            print("LA CEDULA ES CORRECTA\n")
+        } else {
+            print("LA CEDULA ES INCORRECTA\n")
+        }
+        println("Por qué " + arrayCedula[arrayCedula.size - 1] + " = $respuesta")
+
     }
 }
